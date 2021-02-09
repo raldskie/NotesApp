@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const NotesSchema = new mongoose.Schema({
 
-    userID: {
+    userID: { 
         type: String,
         required: true
     },

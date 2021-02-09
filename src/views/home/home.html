@@ -1,38 +1,42 @@
 {{> nav}}
 
 <div class="container mt-3">
-    <p>Add Your Notes Here</p>
 
     <div class="row">
 
         <div class="col-lg-4">
 
+            <p class="display-4">Hi, <span class="font-weight-bold">{{username}}</span></p>
+
+            <p class="o-5">Add Your Notes Here</p>
+
             {{> messages}}
 
             <form action="/add-note" method="post" class="form-group">
-                <input type="text" name="title" class="form-control" placeholder="Title">
-                <textarea name="note" rows="8" class="form-control mt-2" placeholder="Note Content"></textarea>
+                <input type="text" name="title" class="text-view" placeholder="Title">
+                <textarea name="note" rows="8" class="text-view mt-2" placeholder="Note Content"></textarea>
                 <button class="btn btn-primary d-block mt-2">Add Note</button>
             </form>
         </div>
 
         <div class="col-lg-8" style="height: 80vh; overflow-y: scroll;">
             <p class="font-weight-bold">NOTES LIST</p>
-                {{#each notesList}}
-                <div class="d-flex flex-row border align-items-center p-2 rounded mb-3">
-                    <div class="w-100">
-                        <h3 class="pl-2 pt-2">{{this.title}}</h3>
-                        <p class="pl-2 pr-4">{{this.note}}</p>
-                    </div>
-                    <button class="edit-button btn btn-primary mr-2" data-id="{{this._id}}" data-title="{{this.title}}"
-                        data-note="{{this.note}}" data-toggle="modal" data-target="#edit-modal">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-
-                    <button class="delete-button btn btn-danger" data-id="{{this._id}}" data-title="{{this.title}}"
-                        data-note="{{this.note}}" data-toggle="modal" data-target="#delete-modal"><i
-                            class="fa fa-trash-o" aria-hidden="true"></i></button>
+            {{#each notesList}}
+            <div class="d-flex flex-row border bg-white align-items-center p-2 rounded mb-3">
+                <div class="w-100">
+                    <h3 class="pl-2 pt-2 font-weight-bold">{{this.title}}</h3>
+                    <p class="date pl-2">Created At: {{createdAt}}, Updated At: {{updatedAt}}</p>
+                    <p class="pl-2 pr-4">{{this.note}}</p>
                 </div>
-                {{/each}}
+                <button class="edit-button btn btn-primary mr-2 rounded-circle" data-id="{{this._id}}" data-title="{{this.title}}"
+                    data-note="{{this.note}}" data-toggle="modal" data-target="#edit-modal">
+                    <i class="fa fa-pencil-square" aria-hidden="true"></i></button>
+
+                <button class="delete-button btn btn-danger rounded-circle" data-id="{{this._id}}" data-title="{{this.title}}"
+                    data-note="{{this.note}}" data-toggle="modal" data-target="#delete-modal"><i class="fa fa-trash-o"
+                        aria-hidden="true"></i></button>
+            </div>
+            {{/each}}
         </div>
     </div>
 </div>
@@ -84,7 +88,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a id="confirm-delete"><button class="btn btn-danger">Delete User</button></a>
+                <a id="confirm-delete"><button class="btn btn-danger">Delete Note</button></a>
             </div>
 
         </div>

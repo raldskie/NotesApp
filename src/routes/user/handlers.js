@@ -2,6 +2,7 @@
 
 var internals = {};
 var Notes = require('../../database/models/Notes');
+const moment = require('moment');
 
 internals.home = async (req, reply) => {
 
@@ -13,6 +14,8 @@ internals.home = async (req, reply) => {
                         _id: data._id,
                         title: data.title,
                         note: data.note,
+                        createdAt: moment(data.createdAt).format('MMMM DD, YYYY'),
+                        updatedAt: moment(data.updatedAt).format('MMMM DD, YYYY')
                     }
                 }),
                 username: req.auth.credentials.username,
@@ -41,6 +44,12 @@ internals.add_note = (req, reply) => {
 }
 
 internals.edit_note = (req, reply) => {
+
+    let { title, note } = req.payload;
+
+    if (!title || !note)
+        return reply.redirect('/home?message=Please fill all fields. &messageTitle=Failed &alertType=danger');
+
     return Notes.findByIdAndUpdate({ _id: req.params.id }, req.payload)
         .then(() => {
             return reply.redirect('/home?message=Note successfully edited. &messageTitle=Success &alertType=success');

@@ -6,10 +6,12 @@
 
         <div class="col-lg-8 p-0">
 
-            {{> messages}}
-
+           
+            <p class="mb-3 display-4"><i class="fa fa-sticky-note" aria-hidden="true"></i> ForeverNote</p>
             <form class="form-group p-0 border" action="/save-user" method="POST">
                 <p class="bg-light border-bottom px-3 py-2"><b>Sign Up</b></p>
+
+                <div class="mx-3">{{> messages}}</div>
 
                 <div class="form-group row px-3">
                     <label for="inputPassword" class="col-sm-2 col-form-label">Username</label>
