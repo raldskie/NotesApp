@@ -14,7 +14,6 @@ jQuery(function () {
             alert("Passwords don't match!");
         }
         else {
-            alert(`Successful Sign Up!\n\nusername: ${username}\nemail: ${email}\npassword: ${password}\nconfirm password: ${password_}`);
             $("form").submit();
         }
 
